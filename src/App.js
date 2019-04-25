@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
-import { NavBar } from './nav-bar/nav-bar'
-import { PigLatin } from './pig-latin/pig-latin'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+import { NavBar } from './components/nav-bar/nav-bar';
+import { Error } from './error';
+import { Pages } from './Pages';
+
 import './App.css';
 
 class App extends Component {
@@ -9,6 +13,7 @@ class App extends Component {
     const navBar = {
       position: "static"
     }
+    
 
     this.state = {
       navBar
@@ -17,10 +22,18 @@ class App extends Component {
 
   }
   render() {
+    const pages = Object.keys(Pages).map(page => {
+      return <Route key={page} path={Pages[page].path} component={Pages[page].component}/>
+    })
     return (
       <div>
-        <NavBar position={this.state.navBar.position} ></NavBar>
-        <PigLatin></PigLatin>
+        <Router>
+          <NavBar position={this.state.navBar.position} />
+          <Switch>
+            { pages }
+            <Route component={Error} />
+          </Switch>
+        </Router>
       </div>
     )}
 }
