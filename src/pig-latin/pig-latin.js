@@ -1,8 +1,9 @@
 import React from 'react';
-import { TextField, Button, Card } from '@material-ui/core';
+import { CardContainer } from '../elements/card-container/card-container';
+import { TextField, Button } from '@material-ui/core';
 
 export class PigLatin extends React.Component {
-    constructor(){
+    constructor() {
         super();
         this.state = {
             title: 'English >> Pig Latin',
@@ -13,53 +14,56 @@ export class PigLatin extends React.Component {
     }
 
     handleEnglishChange(e) {
-        this.setState({english: e.target.value});
+        this.setState({ english: e.target.value });
     }
 
     translateToPigLatin() {
         const text = this.state.english;
         const words = text.split(' ');
-        this.setState({translation: this.parseEng(words)});
+        this.setState({ translation: this.parseEng(words) });
     }
 
     parseEng(words) {
-        const ay = 'ay';
+        let ay;
         const arr = [];
         let body;
         let tail;
         const vowels = ['a', 'e', 'i', 'o', 'u', 'y'];
-        for(let i = 0; i < words.length; i++) {
-            for(let j = 0; j < words[i].length; j++ ) {
-                if(vowels.includes(words[i][j])) {
+        for (let i = 0; i < words.length; i++) {
+            for (let j = 0; j < words[i].length; j++) { // loop through string
+                if (vowels.includes(words[i][j])) {
                     body = words[i].substring(j);
-                    tail = words[i].substring(0,j);
+                    tail = words[i].substring(0, j);
+                    ay = (j === 0) ? 'hay': 'ay';
                     break;
                 }
             }
-            arr.push(`${body}-${tail+ay}`);
+            arr.push(`${body}-${tail + ay}`);
         }
         return arr.join(' ');
     }
 
     render() {
         return (
-            <Card>
+            <div>
+            <CardContainer>
                 <h1 align="center">{this.state.title}</h1>
                 <form align="center" onSubmit={this.translateToPigLatin}>
                     <TextField
-                        multiline 
-                        rowsMax={ this.state.rowsMax}
+                        multiline
+                        rowsMax={this.state.rowsMax}
                         value={this.state.english}
                         onChange={this.handleEnglishChange}
                     />
-                    <Button type="button" onClick={this.translateToPigLatin} >Translate</Button>
+                    <Button type="button" onClick={this.translateToPigLatin}>Translate</Button>
                     <TextField
                         multiline
-                        rowsMax={ this.state.rowsMax}
+                        rowsMax={this.state.rowsMax}
                         value={this.state.translation}
                     />
                 </form>
-            </Card>
+            </CardContainer>
+            </div>
         );
     }
 }
