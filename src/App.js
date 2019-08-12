@@ -13,17 +13,15 @@ class App extends Component {
     const navBar = {
       position: "static"
     }
-    
 
     this.state = {
       navBar
     }
 
-
   }
   render() {
     const pages = Object.keys(Pages).map(page => {
-      return <Route key={page} path={Pages[page].path} component={Pages[page].component}/>
+      return <Route exact path={Pages[page].path} component={Pages[page].component}/>
     })
     return (
       <div>

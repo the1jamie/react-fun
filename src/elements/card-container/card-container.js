@@ -6,9 +6,10 @@ export class CardContainer extends Component {
 
   render() {
     return (
-      <div className="card-comtainer">
+      <div className="card-container">
         <Card>
           <CardContent>
+            <h1 align="center">{this.props.title}</h1>
             {this.props.children}
           </CardContent>
         </Card>
