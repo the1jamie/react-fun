@@ -1,5 +1,5 @@
 ## My React Projects
 
-###English >> Pig Latin 
+English >> Pig Latin 
 
-###Rock-Paper-Scissors 
+Rock-Paper-Scissors 
