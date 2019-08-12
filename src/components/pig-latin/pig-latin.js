@@ -47,8 +47,7 @@ export class PigLatin extends React.Component {
 
   render() {
     return (
-        <CardContainer>
-          <h1 align="center">{this.state.title}</h1>
+        <CardContainer title={this.state.title}>
           <form align="center" onSubmit={this.translateToPigLatin}>
             <TextField
               multiline
@@ -56,7 +55,7 @@ export class PigLatin extends React.Component {
               value={this.state.english}
               onChange={this.handleEnglishChange}
             />
-            <Button type="button" color="primary" onClick={this.translateToPigLatin} >Translate</Button>
+            <Button type="button" color="primary" onClick={this.translateToPigLatin}>Translate</Button>
             <TextField
               multiline
               rowsMax={this.state.rowsMax}

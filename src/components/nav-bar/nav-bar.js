@@ -24,9 +24,8 @@ export class NavBar extends React.Component{
         { Object.keys(Pages).map(page => {
           return (
             <ListItem key={page}>
-                <NavLink to={Pages[page].path}>{Pages[page].name}</NavLink>             
+                <NavLink to={Pages[page].path}> {Pages[page].name} </NavLink>             
             </ListItem>
-            
           );
           })
         }
