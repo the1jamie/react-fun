@@ -1,5 +1,6 @@
 import React from 'react';
 import { CardContainer } from '../../elements/card-container/card-container';
+import Button from '@material-ui/core/Button';
 
 
 export class RPS extends React.Component {
@@ -46,8 +47,11 @@ export class RPS extends React.Component {
   playHand(value) {
     const userNum = value
     const computerNum = this.randomNumberSelector()
+    const winner = (userNum > computerNum 
+      || ((userNum === 0) && (computerNum === 2))) 
+      && !((userNum === 2) && (computerNum === 0))
 
-    if(userNum > computerNum || (userNum === 0 && computerNum === 2)) {
+    if(winner) {
       this.setState({result: 'You won!!!' })
       this.setState({streak: this.state.streak+1 })
     } else if(userNum === computerNum) {
@@ -62,7 +66,7 @@ export class RPS extends React.Component {
 
   render() {
     const handChoiceButtons = Object.keys(this.state.choice).map((choice, index) => {
-      return (<button key={index} onClick={() => this.playHand(index)}>{choice}</button>)
+      return (<Button variant="contained" color="primary" key={index} onClick={() => this.playHand(index)}>{choice}</Button>)
     })
     return (
       <div>

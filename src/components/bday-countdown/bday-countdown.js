@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { CardContainer } from '../../elements/card-container/card-container';
+import TextField from '@material-ui/core/TextField';
 
 export class BdayCountdown extends Component {
   constructor(){
@@ -9,14 +10,39 @@ export class BdayCountdown extends Component {
     }
   }
 
+  inDays(bDay, currentDay) {
+    var CDtime = currentDay.getTime();
+    var BDtime = bDay.getTime();
+    console.log( parseInt(( CDtime - BDtime )/(24*3600*1000)) )
+  }
+
+  // diffMonths(bDay, currentDay) {
+    
+  // }
+
+  birthDate(e) {
+    const current = new Date()
+    const bDay = new Date(e.target.value)
+    
+    this.inDays(bDay, current);
+  }
+
   render() {
-    const date = new Date(563,602,996,693);
-    date.setFullYear(1987,9,10)
-    const mydate = date.getFullYea
     return (
       <div>
         <CardContainer title={this.state.title}>
-          <h2>Test date:{mydate}</h2>
+          <form noValidate>
+            <TextField
+              id="date"
+              label="Birthday"
+              type="date"
+              defaultValue="2017-05-24"
+              onChange={this.birthDate.bind(this)}
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+          </form>
         </CardContainer>
       </div>
     )

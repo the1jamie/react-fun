@@ -1,5 +1,5 @@
 import { Home } from './components/home/home';
-import { PigLatin } from './components/pig-latin/pig-latin';
+import PigLatin from './components/pig-latin/pig-latin';
 import { BdayCountdown } from './components/bday-countdown/bday-countdown';
 import { RPS } from './components/rps/rps';
 

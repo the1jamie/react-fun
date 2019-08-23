@@ -1,43 +1,56 @@
 import React from 'react';
-import { TextField, Button } from '@material-ui/core';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { setTitle, setRowsMax, setEnglish, setPigLatin } from '../../actions/action-dispatcher'
+import { TextField } from '@material-ui/core';
 import { CardContainer } from '../../elements/card-container/card-container';
 
-export class PigLatin extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      title: 'English >> Pig Latin',
-      rowsMax: 5,
-    }
+
+class PigLatin extends React.Component {
+  constructor(props) {
+    super(props);
+    const { setTitle, setRowsMax } = this.props;
+    setTitle('English >> Pig Latin');
+    setRowsMax(5);
+    
     this.translateToPigLatin = this.translateToPigLatin.bind(this);
     this.handleEnglishChange = this.handleEnglishChange.bind(this);
   }
 
   handleEnglishChange(e) {
-    this.setState({ english: e.target.value });
+    e.preventDefault();
+    let english = e.target.value;
+    this.props.setEnglish(english)
+    this.translateToPigLatin(english);
   }
 
-  translateToPigLatin() {
-    const text = this.state.english;
+  translateToPigLatin(text) {
     if (text) {
       const words = text.split(' ');
-      this.setState({ translation: this.parseEng(words) });
+      this.props.setPigLatin(this.parseEng(words))
     }
   }
 
   parseEng(words) {
     const arr = [];
-    let body;
-    let tail;
-    let ay;
+    let body = '';
+    let tail = '';
+    let ay = '';
     const vowels = ['a', 'e', 'i', 'o', 'u', 'y'];
     for (let i = 0; i < words.length; i++) {
       for (let j = 0; j < words[i].length; j++) {
-        if (vowels.includes(words[i][j])) {
-          body = words[i].substring(j);
-          tail = words[i].substring(0, j);
-          ay = (j === 0) ? 'hay': 'ay';
-          break;
+        switch(words[i].length) {
+          case 1:
+            body = words[i];
+            tail = '';
+            ay = 'hay';
+          default:
+            if (vowels.includes(words[i][j])) {
+              body = words[i].substring(j);
+              tail = words[i].substring(0, j);
+              ay = (j === 0) ? 'hay': 'ay';
+              break;
+            }
         }
       }
       arr.push(`${body}-${tail + ay}`);
@@ -46,23 +59,42 @@ export class PigLatin extends React.Component {
   }
 
   render() {
+    const { title, english, pigLatin, rowsMax } = this.props.pigLatin;
+
     return (
-        <CardContainer title={this.state.title}>
-          <form align="center" onSubmit={this.translateToPigLatin}>
+        <CardContainer title={title}>
+          <form align="center">
             <TextField
               multiline
-              rowsMax={this.state.rowsMax}
-              value={this.state.english}
+              rowsMax={rowsMax}
+              value={english}
               onChange={this.handleEnglishChange}
             />
-            <Button type="button" color="primary" onClick={this.translateToPigLatin}>Translate</Button>
+            >>>
             <TextField
               multiline
-              rowsMax={this.state.rowsMax}
-              value={this.state.translation}
+              rowsMax={rowsMax}
+              value={pigLatin}
             />
           </form>
         </CardContainer>
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    pigLatin: state.pigLatin
+  }
+}
+
+const matchDispatchToProps = dispatch => {
+  return bindActionCreators({
+    setTitle, 
+    setRowsMax, 
+    setEnglish, 
+    setPigLatin
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, matchDispatchToProps)(PigLatin)
