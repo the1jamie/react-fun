@@ -15,7 +15,7 @@ const pigLatin = (state={}, action) => {
         ...state,
           english: action.english
         };
-    case 'SET_PIGLATIN':
+    case 'SHOW_PIGLATIN':
       return {
         ...state,
           pigLatin: action.latin

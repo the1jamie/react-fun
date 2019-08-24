@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { setTitle, setRowsMax, setEnglish, setPigLatin } from '../../actions/action-dispatcher'
+import * as constants from './constants';
+import { setTitle, setRowsMax, setEnglish, setPigLatin } from './actions'
 import { TextField } from '@material-ui/core';
 import { CardContainer } from '../../elements/card-container/card-container';
 
@@ -9,10 +10,11 @@ import { CardContainer } from '../../elements/card-container/card-container';
 class PigLatin extends React.Component {
   constructor(props) {
     super(props);
+
+    const { title } = constants
     const { setTitle, setRowsMax } = this.props;
-    setTitle('English >> Pig Latin');
+    setTitle(title);
     setRowsMax(5);
-    
     this.translateToPigLatin = this.translateToPigLatin.bind(this);
     this.handleEnglishChange = this.handleEnglishChange.bind(this);
   }

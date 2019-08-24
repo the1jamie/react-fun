@@ -1,8 +1,12 @@
 import { combineReducers } from 'redux';
-import pigLatin from './pig-latin';
+import home from '../containers/Home/reducer'
+import pigLatin from '../containers/PigLatin/reducer';
+import RPS from '../containers/RPS/reducer'
 
 const rootReducer = combineReducers({
-  pigLatin
+  home,
+  pigLatin,
+  RPS
 });  
 
 export default rootReducer;
