@@ -46,6 +46,7 @@ class PigLatin extends React.Component {
             body = words[i];
             tail = '';
             ay = 'hay';
+            break;
           default:
             if (vowels.includes(words[i][j])) {
               body = words[i].substring(j);
