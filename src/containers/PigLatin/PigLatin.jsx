@@ -10,7 +10,6 @@ import { CardContainer } from '../../elements/card-container/card-container';
 class PigLatin extends React.Component {
   constructor(props) {
     super(props);
-
     const { title } = constants
     const { setTitle, setRowsMax } = this.props;
     setTitle(title);
@@ -65,22 +64,22 @@ class PigLatin extends React.Component {
     const { title, english, pigLatin, rowsMax } = this.props.pigLatin;
 
     return (
-        <CardContainer title={title}>
-          <form align="center">
-            <TextField
-              multiline
-              rowsMax={rowsMax}
-              value={english}
-              onChange={this.handleEnglishChange}
-            />
-            >>>
-            <TextField
-              multiline
-              rowsMax={rowsMax}
-              value={pigLatin}
-            />
-          </form>
-        </CardContainer>
+      <CardContainer title={title}>
+        <form align="center">
+          <TextField
+            multiline
+            rowsMax={rowsMax}
+            value={english}
+            onChange={this.handleEnglishChange}
+          />
+          >>>
+          <TextField
+            multiline
+            rowsMax={rowsMax}
+            value={pigLatin}
+          />
+        </form>
+      </CardContainer>
     );
   }
 }

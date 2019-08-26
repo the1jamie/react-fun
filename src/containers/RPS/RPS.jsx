@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import * as constants from './constants';
 import { setTitle, showUserHand, showComputerHand, showResult, setStreak, endStreak, setChoice } from './actions'
 import { CardContainer } from '../../elements/card-container/card-container';
-import Button from '@material-ui/core/Button';
+import { Button, Grid } from '@material-ui/core';
 
 const { TITLE, ROCK, PAPER, SCISSORS } = constants;
 
@@ -68,7 +68,11 @@ class RPS extends React.Component {
   render() {
     const { title, userHand, computerHand, result, streak, choices } = this.props.RPS;
     const handChoiceButtons = Object.keys(choices).map((choice, index) => {
-      return (<Button variant="contained" color="primary" key={index} onClick={() => this.playHand(index)}>{choice}</Button>)
+      return (
+        <Grid item >
+          <Button variant="contained" color="primary" key={index} onClick={() => this.playHand(index)}>{choice}</Button>
+        </Grid>
+      )
     })
     return (
       <div>
@@ -78,7 +82,9 @@ class RPS extends React.Component {
            <p>Computer chose: {computerHand}</p>
            <h2>{result}</h2>
            <p>Streak: {streak}</p>
-            { handChoiceButtons }
+            <Grid container direction="row" justify="space-evenly">
+              { handChoiceButtons }
+            </Grid>
           </div>
         </CardContainer>
       </div>
