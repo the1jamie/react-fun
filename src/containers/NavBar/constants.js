@@ -1,0 +1,2 @@
+export const TOGGLE_DRAWER = 'NAV::TOGGLE_DRAWER';
+export const CLOSE_DRAWER = 'NAV::CLOSE_DRAWER';

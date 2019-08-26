@@ -1,7 +1,7 @@
-import { Home } from './components/home/home';
-import { PigLatin } from './components/pig-latin/pig-latin';
+import Home from './containers/Home/Home';
+import PigLatin from './containers/PigLatin/PigLatin';
 import { BdayCountdown } from './components/bday-countdown/bday-countdown';
-import { RPS } from './components/rps/rps';
+import RPS from './containers/RPS/RPS';
 
 export const Pages = {
   HOME: {
