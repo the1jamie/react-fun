@@ -1,6 +1,6 @@
 import Home from './containers/Home/Home';
 import PigLatin from './containers/PigLatin/PigLatin';
-import { BdayCountdown } from './components/bday-countdown/bday-countdown';
+import BdayCountdown from './containers/BDayCountdown/BDayCountdown';
 import RPS from './containers/RPS/RPS';
 
 export const Pages = {

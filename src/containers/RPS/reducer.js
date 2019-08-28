@@ -4,12 +4,12 @@ const defaultState = {
   title: '',
   userHand: '',
   computerHand: '',
-  result: '',
+  result: 'Let\'s Play',
   streak: 0,
   choices: {}
 }
 
-const RPS = (state = defaultState, action) => {
+const rps = (state = defaultState, action) => {
   const {type, payload} = action;
   switch(type){
     case constants.SET_TITLE:
@@ -52,4 +52,4 @@ const RPS = (state = defaultState, action) => {
    }
 }
 
-export default RPS;
+export default rps;

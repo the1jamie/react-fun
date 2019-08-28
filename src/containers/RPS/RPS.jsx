@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import * as constants from './constants';
 import { setTitle, showUserHand, showComputerHand, showResult, setStreak, endStreak, setChoice } from './actions'
 import { CardContainer } from '../../elements/card-container/card-container';
-import Button from '@material-ui/core/Button';
+import { Button, Grid } from '@material-ui/core';
 
 const { TITLE, ROCK, PAPER, SCISSORS } = constants;
 
@@ -66,29 +66,31 @@ class RPS extends React.Component {
   }
 
   render() {
-    const { title, userHand, computerHand, result, streak, choices } = this.props.RPS;
+    const { title, userHand, computerHand, result, streak, choices } = this.props.rps;
     const handChoiceButtons = Object.keys(choices).map((choice, index) => {
-      return (<Button variant="contained" color="primary" key={index} onClick={() => this.playHand(index)}>{choice}</Button>)
+      return (
+        <Grid item key={index}>
+          <Button variant="contained" color="primary" onClick={() => this.playHand(index)}>{choice}</Button>
+        </Grid>
+      )
     })
     return (
-      <div>
-        <CardContainer title={title}>
-         <div align="center">
-           <p>You chose: {userHand}</p>
-           <p>Computer chose: {computerHand}</p>
-           <h2>{result}</h2>
-           <p>Streak: {streak}</p>
-            { handChoiceButtons }
-          </div>
-        </CardContainer>
-      </div>
+      <CardContainer title={title}>
+        <p>You chose: {userHand}</p>
+        <p>Computer chose: {computerHand}</p>
+        <h2>{result}</h2>
+        <p>Streak: {streak}</p>
+        <Grid container direction="row" justify="space-evenly">
+          { handChoiceButtons }
+        </Grid>
+      </CardContainer>
     )
   }
 }
 
 const mapStateToProps = state => {
   return {
-    RPS: state.RPS
+    rps: state.rps
   }
 }
 

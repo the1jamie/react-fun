@@ -10,7 +10,6 @@ import { CardContainer } from '../../elements/card-container/card-container';
 class PigLatin extends React.Component {
   constructor(props) {
     super(props);
-
     const { title } = constants
     const { setTitle, setRowsMax } = this.props;
     setTitle(title);
@@ -41,20 +40,12 @@ class PigLatin extends React.Component {
     const vowels = ['a', 'e', 'i', 'o', 'u', 'y'];
     for (let i = 0; i < words.length; i++) {
       for (let j = 0; j < words[i].length; j++) {
-        switch(words[i].length) {
-          case 1:
-            body = words[i];
-            tail = '';
-            ay = 'hay';
+        if (vowels.includes(words[i][j])) {
+            body = words[i].substring(j);
+            tail = words[i].substring(0, j);
+            ay = (j === 0) ? 'hay': 'ay';
             break;
-          default:
-            if (vowels.includes(words[i][j])) {
-              body = words[i].substring(j);
-              tail = words[i].substring(0, j);
-              ay = (j === 0) ? 'hay': 'ay';
-              break;
-            }
-        }
+          }
       }
       arr.push(`${body}-${tail + ay}`);
     }
@@ -65,22 +56,22 @@ class PigLatin extends React.Component {
     const { title, english, pigLatin, rowsMax } = this.props.pigLatin;
 
     return (
-        <CardContainer title={title}>
-          <form align="center">
-            <TextField
-              multiline
-              rowsMax={rowsMax}
-              value={english}
-              onChange={this.handleEnglishChange}
-            />
-            >>>
-            <TextField
-              multiline
-              rowsMax={rowsMax}
-              value={pigLatin}
-            />
-          </form>
-        </CardContainer>
+      <CardContainer title={title}>
+        <form align="center">
+          <TextField
+            multiline
+            rowsMax={rowsMax}
+            value={english}
+            onChange={this.handleEnglishChange}
+          />
+          >>>
+          <TextField
+            multiline
+            rowsMax={rowsMax}
+            value={pigLatin}
+          />
+        </form>
+      </CardContainer>
     );
   }
 }
