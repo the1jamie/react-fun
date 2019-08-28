@@ -40,20 +40,12 @@ class PigLatin extends React.Component {
     const vowels = ['a', 'e', 'i', 'o', 'u', 'y'];
     for (let i = 0; i < words.length; i++) {
       for (let j = 0; j < words[i].length; j++) {
-        switch(words[i].length) {
-          case 1:
-            body = words[i];
-            tail = '';
-            ay = 'hay';
+        if (vowels.includes(words[i][j])) {
+            body = words[i].substring(j);
+            tail = words[i].substring(0, j);
+            ay = (j === 0) ? 'hay': 'ay';
             break;
-          default:
-            if (vowels.includes(words[i][j])) {
-              body = words[i].substring(j);
-              tail = words[i].substring(0, j);
-              ay = (j === 0) ? 'hay': 'ay';
-              break;
-            }
-        }
+          }
       }
       arr.push(`${body}-${tail + ay}`);
     }
