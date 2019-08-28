@@ -66,35 +66,31 @@ class RPS extends React.Component {
   }
 
   render() {
-    const { title, userHand, computerHand, result, streak, choices } = this.props.RPS;
+    const { title, userHand, computerHand, result, streak, choices } = this.props.rps;
     const handChoiceButtons = Object.keys(choices).map((choice, index) => {
       return (
-        <Grid item >
-          <Button variant="contained" color="primary" key={index} onClick={() => this.playHand(index)}>{choice}</Button>
+        <Grid item key={index}>
+          <Button variant="contained" color="primary" onClick={() => this.playHand(index)}>{choice}</Button>
         </Grid>
       )
     })
     return (
-      <div>
-        <CardContainer title={title}>
-         <div align="center">
-           <p>You chose: {userHand}</p>
-           <p>Computer chose: {computerHand}</p>
-           <h2>{result}</h2>
-           <p>Streak: {streak}</p>
-            <Grid container direction="row" justify="space-evenly">
-              { handChoiceButtons }
-            </Grid>
-          </div>
-        </CardContainer>
-      </div>
+      <CardContainer title={title}>
+        <p>You chose: {userHand}</p>
+        <p>Computer chose: {computerHand}</p>
+        <h2>{result}</h2>
+        <p>Streak: {streak}</p>
+        <Grid container direction="row" justify="space-evenly">
+          { handChoiceButtons }
+        </Grid>
+      </CardContainer>
     )
   }
 }
 
 const mapStateToProps = state => {
   return {
-    RPS: state.RPS
+    rps: state.rps
   }
 }
 
