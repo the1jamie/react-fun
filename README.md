@@ -1,5 +1,5 @@
 ## My React Projects
 
-English >> Pig Latin 
+English to Pig Latin 
 Birthday Countdown
 Rock-Paper-Scissors 
